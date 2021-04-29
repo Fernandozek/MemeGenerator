@@ -8,8 +8,8 @@ interface HomeContextData {
     onDrop: (acceptedFiles)=> void;
     setUpperText: (value:string) => void;
     setLowerText: (value:string) => void;
-    downloadMeme
-    fontSz
+    downloadMeme: any;
+    fontSz: any;
     fontSize: number;
 }
 
@@ -63,19 +63,16 @@ const HomeContextProvider = ({children}:HomeContextProviderProps) => {
         }
     }, [images, upperText, lowerText]);
 
-    const fontSz = (e: number) =>{
-       setFontSz(e); 
-       setUpperText(upperText);
-       return e;
+    const fontSz = (e: number) => {
+       setFontSz(e);
     }
     
     const downloadMeme = () => {
         if(images && images.length > 0) {
             const canvas = canvasRef.current;
-            console.log(canvas.toDataURL());
             const a = document.createElement('a');
             a.href = canvas.toDataURL();
-            a.download = 'meme.png';
+            a.download = 'download.png';
             document.body.appendChild(a);
             a.click();
         }
